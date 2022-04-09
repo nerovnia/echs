@@ -1,0 +1,23 @@
+{
+  "name": "echs",
+  "version": "1.0.0",
+  "description": "Формування заявок на роботи у електроустановках",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nerovnia/echs.git"
+  },
+  "author": "Volodymyr Nerovnia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nerovnia/echs/issues"
+  },
+  "homepage": "https://github.com/nerovnia/echs#readme",
+  "devDependencies": {
+    "electron": "^18.0.3"
+  }
+}
