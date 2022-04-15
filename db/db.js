@@ -12,6 +12,8 @@ const { getModelRoztash } = require('../models/roztash.js');
 const { getModelWorker } = require('../models/worker.js');
 
 const initModels = async (sequelize) => {
+
+  /*
   const Katelbez = await getModelKatelbez(sequelize).sync({ alter: true });
   const Brig = await getModelBrig(sequelize).sync({ alter: true });
   const Mechanism = await getModelMechanism(sequelize).sync({ alter: true });
@@ -23,11 +25,54 @@ const initModels = async (sequelize) => {
   const Narswitch = await getModelNarswitch(sequelize).sync({ alter: true });
   const Roztash = await getModelRoztash(sequelize).sync({ alter: true });
   const Worker = await getModelWorker(sequelize).sync({ alter: true });
+*/
 
-  Nardop.hasMany(Katelbez, {
-    foreignKey: 'katelbez_id'
-  })
-  Katelbez.belongsTo(Nardop)
+  
+  const Katelbez = await getModelKatelbez(sequelize).sync();
+  const Brig = await getModelBrig(sequelize).sync();
+  const Mechanism = await getModelMechanism(sequelize).sync();
+  const Narground = await getModelNarground(sequelize).sync();
+  const Position = await getModelPosition(sequelize).sync();
+  const User = await getModelUser(sequelize).sync();
+  const Eotype = await getModelEotype(sequelize).sync();
+  const Nardop = await getModelNardop(sequelize).sync();
+  const Narswitch = await getModelNarswitch(sequelize).sync();
+  const Roztash = await getModelRoztash(sequelize).sync();
+  const Worker = await getModelWorker(sequelize).sync();
+
+// Create a new user
+const jane = await User.create({ name: "Jane", passwd: "Doe", worker_id: 1 });
+console.log("Jane's auto-generated ID:", jane.id);
+
+
+
+/*
+const Katelbez = await getModelKatelbez(sequelize);
+const Nardop = await getModelNardop(sequelize);
+
+  Nardop.hasMany(Katelbez);
+  Katelbez.belongsTo(Nardop);
+  sequelize.sync();
+*/
+/*
+  Nardop.associate = models => {
+    Nardop.hasMany(Katelbez, {
+      foreignKey: 'katelbez_id'
+    });
+  }
+
+  await Nardop.sync({ alter: true });
+  await Katelbez.sync({ alter: true });
+*/ 
+/*
+  const User = sequelize.define('user', { username: Sequelize.STRING }, {
+    underscored: true
+  });
+  const Task = sequelize.define('task', { title: Sequelize.STRING }, {
+    underscored: true
+  });*/
+  //Nardop.hasMany(Katelbez);
+  //Katelbez.belongsTo(Nardop);
 /*
   console.log(Katelbez === sequelize.models.katelbez) // true
   console.log(Brig === sequelize.models.brig);

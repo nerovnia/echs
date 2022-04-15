@@ -7,6 +7,7 @@ module.exports.getModelNardop = (sequelize) => {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
+        allowNull: false,
         primaryKey: true
       },
       nnome: {
@@ -33,7 +34,11 @@ module.exports.getModelNardop = (sequelize) => {
       },
       katelbez_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'katelbez',
+          key: 'id'
+        }
       },
       brig_id: {
         type: DataTypes.INTEGER,
@@ -41,11 +46,19 @@ module.exports.getModelNardop = (sequelize) => {
       },
       position_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'position',
+          key: 'id'
+        }
       },
       eotype_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'eotype',
+          key: 'id'
+        }
       },
       fider: {
         type: DataTypes.STRING(70),
@@ -57,15 +70,27 @@ module.exports.getModelNardop = (sequelize) => {
       },
       mechanism_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'mechanism',
+          key: 'id'
+        }
       },
       sw_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'narswitch',
+          key: 'id'
+        }
       },
       gr_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'narground',
+          key: 'id'
+        }
       }
     },
     {

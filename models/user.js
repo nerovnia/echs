@@ -6,6 +6,7 @@ module.exports.getModelUser = (sequelize) => {
     {
       id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
