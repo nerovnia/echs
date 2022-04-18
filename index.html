@@ -1,16 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="./public/css/main.css"> -->
+  <script type="text/javascript" scr="./node_modules/contents/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <title>Реєстр заявок/нарядів</title>
+</head>
+
+<body>
+  <div id="app" class="container">
+    <div id="login" class="mb-3 position-absolute top-50 start-50 translate-middle">
+      <form id="login" action="">
+        <div class="mb-3">
+          <input type="text" class="form-control" placeholder="Логін">
+        </div>
+        <div class="mb-3">
+          <input type="password" class="form-control" placeholder="Пароль">
+        </div>
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary mb-3">Увійти</button>
+        </div>
+      </form>
+    </div>
+    <div id="katelbez" class="mb-8 d-none">
+      <p class="h1">h1. Bootstrap heading</p>
+      <div class="h1">Довідники</div>
+      <ul>
+        <li>
+          <a href="./katelbez.html">Категорії електробезпеки</a>
+        </li>
+        <li>Електрообладнання</li>
+        <li>Місце знаходження</li>
+        <li>Механізми</li>
+        <li>Посада</li>
+        <li>Співробітники</li>
+      </ul>
+      <h1>Документи</h1>
+      Заявка&Наряд
+    </div>
+  </div>
+</body>
+
 </html>

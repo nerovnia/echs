@@ -2,6 +2,7 @@ const { app, BrowserWindow } = require('electron');
 //const katelbez = require('./db/models/katelbez');
 //const katelbez = require('./db/models/models');
 const db = require('./db/db');
+const m_menu = require('./js/menu.js');
 
 app.disableHardwareAcceleration();
 
