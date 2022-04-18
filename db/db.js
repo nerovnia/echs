@@ -43,6 +43,7 @@ const initModels = async (sequelize) => {
 // Create a new user
 const jane = await User.create({ name: "Jane", passwd: "Doe", worker_id: 1 });
 console.log("Jane's auto-generated ID:", jane.id);
+jane.name="";
 
 
 
