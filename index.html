@@ -4,17 +4,119 @@
 <head>
   <meta charset="UTF-8">
   <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">  -->
   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="./public/css/main.css"> -->
-  <script type="text/javascript" scr="./node_modules/contents/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="./public/css/about.css">
+  <link rel="stylesheet" href="./public/css/main.css">
   <title>Реєстр заявок/нарядів</title>
 </head>
 
 <body>
   <div id="app" class="container">
-    <div id="login" class="mb-3 position-absolute top-50 start-50 translate-middle">
+    <div id="zayavka" v-if="zayavka_w" class="row">
+      <div class="col-12">
+        <form id="f_zyavka" class="mb-6">
+
+          <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail3">
+            </div>
+          </div>
+
+
+
+          <div class="col-6">
+            <div class="mb-3 row">
+              <label for="narNom" class="col-4 col-form-label">Наряд №</label>
+              <div class="col-7">
+                <input type="text" class="form-control" id="narNom" value="">
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="mb-3 row">
+              <label for="narDate" class="col-4 col-form-label">Дата наряду</label>
+              <div class="col-7">
+                <input type="text" class="form-control" id="narDate" value="">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-6">
+              <label for="zNom" class="col-sm-2 col-form-label">Заявка №</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="zNom" value="">
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="narDate" class="col-sm-2 col-form-label">Дата заявки</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="narDate" value="">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-6">
+              <label for="tWorkFor" class="col-sm-2 col-form-label">Час роботи з</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="tWorkFor" value="">
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="tWorkTo" class="col-sm-2 col-form-label">до</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="tWorkTo" value="">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-12">
+              <label for="tWorkTo" class="col-sm-4 col-form-label">Категорія робіт:</label>
+              <div class="col-sm-8">
+                <select>
+                  <option v-for="k in katelbez" value="">{{ k }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <select>
+            <option v-for="kat in katvolt" value="" >{{ kat }}</option>
+          </select>
+          <select>
+            <option v-for="worker in ker" value="">{{ worker.pib }}</option>
+          </select>
+          <select>
+            <option v-for="worker in dop" value="">{{ worker.pib }}</option>
+          </select>
+          <select>
+            <option v-for="worker in workers" value="">{{ worker.pib }}</option>
+          </select>
+        </form>
+      </div>
+    </div>
+    <div id="about" v-if="about_w" class="row">
+      <div class="col-12">
+        <div id="spstr" class="mb-3">
+          <div class="dropping-texts ">
+            <div>Планування робіт</div>
+            <div>Оформлення заявок</div>
+            <div>Виписка нарядів</div>
+            <div>Отримання допуску</div>
+            <div></div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="h5 text-center">Організація безпечного виконання робіт в електроустановках</div>
+          <div class="h6 text-center">Планування / Заявки / Наряди</div>
+          <div class="text-center">Володимир Неровня</div>
+          <div class="text-center">e-mail: nerv@i.ua</div>
+          <div class="text-center">2022</div>
+        </div>
+      </div>
+    </div>
+    <div id="login" v-if="login_w" class="mb-3 position-absolute top-50 start-50 translate-middle">
       <form id="login" action="">
         <div class="mb-3">
           <input type="text" class="form-control" placeholder="Логін">
@@ -23,11 +125,11 @@
           <input type="password" class="form-control" placeholder="Пароль">
         </div>
         <div class="mb-3">
-          <button type="submit" class="btn btn-primary mb-3">Увійти</button>
+          <button type="button" class="btn btn-primary mb-3" @click="showKatelbez()">Увійти</button>
         </div>
       </form>
     </div>
-    <div id="katelbez" class="mb-8 d-none">
+    <div id="katelbez" v-if="katelbez_w" class="mb-8">
       <p class="h1">h1. Bootstrap heading</p>
       <div class="h1">Довідники</div>
       <ul>
@@ -44,6 +146,10 @@
       Заявка&Наряд
     </div>
   </div>
+  <script type="text/javascript" src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="./node_modules/vue/dist/vue.global.js"></script>
+  <!--<script type="text/javascript" src="./node_modules/vue/dist/vue.global.prod.js"></script> -->
+  <script type="text/javascript" src="./public/js/front.js"></script>
 </body>
 
 </html>
