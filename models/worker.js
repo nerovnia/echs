@@ -10,7 +10,7 @@ module.exports.getModelWorker = (sequelize) => {
         autoIncrement: true,
         primaryKey: true
       },
-      fname: {
+      lname: {
         type: DataTypes.STRING(40),
         allowNull: false
       },
@@ -30,7 +30,10 @@ module.exports.getModelWorker = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      pvnr: {
+      pvnrless1000: {
+        type: DataTypes.BOOLEAN
+      },
+      pvnrmore1000: {
         type: DataTypes.BOOLEAN
       },
       mngrless1000: {
@@ -39,7 +42,10 @@ module.exports.getModelWorker = (sequelize) => {
       mngrmore1000: {
         type: DataTypes.BOOLEAN
       },
-      allowance: {
+      allowless1000: {
+        type: DataTypes.BOOLEAN
+      },
+      allowmore1000: {
         type: DataTypes.BOOLEAN
       },
       supervisor: {
