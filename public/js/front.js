@@ -2,20 +2,21 @@
 
 //const { default: axios } = require("axios");
 
-const { ipcRenderer } = require('electron')
+const { contextBridge, ipcRenderer } = require('electron')
 
-const gelb = []
 
+ipcRenderer.on('dbrecs', (e, initData)=> {
+  console.log(initData);
+  //console.log(initData);
+});
+
+
+const gelb = []; //dbModelsMap.get('Gelb').findAll()
 const position = [];
-
 const prizv = [];
-
 const in_latters = [];
-
 const katvolt = [];
-
 const katelbez = [];
-
 
 const app = Vue.createApp({
   data() {
@@ -40,17 +41,21 @@ const app = Vue.createApp({
   created() {
     this.position = position;
     this.gelb = gelb;
-    this.katelbez = katelbez;
+    //this.katelbez = katelbez;
+    ipcRenderer.send('getRecords', 'Katelbez');
+    //console.log(this.katelbez);
+
+    //ipcRenderer.send('getRecords', 'User', this.user);
+    //ipcRenderer.send('getRecords', 'Katelbez', this.katelbez); 
+    
     this.katvolt = katvolt;
     //this.workers = fillWorker(20);
     this.dop = this.workers.filter(w => w.allowance);
-    axios.get("https://reddit.com/r/aww.json")
-      .then(response => {
-        console.log(response.data.data.children);
-      })
-      .catch(error => {
-        console.log(error);
-      })
+
+    //ipcRenderer.on('dbrecs', (e, initData, dest)=> {
+    //ipcRenderer.on('dbrecs', (e, initData)=> {
+    //  console.log(initData);
+    //});
   },
   methods: {
     showKatelbez() {
@@ -58,3 +63,4 @@ const app = Vue.createApp({
     }
   }
 }).mount('#app');
+

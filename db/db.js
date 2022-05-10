@@ -12,97 +12,45 @@ const { getModelRoztash } = require('../models/roztash.js');
 const { getModelWorker } = require('../models/worker.js');
 
 const initModels = async (sequelize) => {
-
-  /*
-  const Katelbez = await getModelKatelbez(sequelize).sync({ alter: true });
-  const Brig = await getModelBrig(sequelize).sync({ alter: true });
-  const Mechanism = await getModelMechanism(sequelize).sync({ alter: true });
-  const Narground = await getModelNarground(sequelize).sync({ alter: true });
-  const Position = await getModelPosition(sequelize).sync({ alter: true });
-  const User = await getModelUser(sequelize).sync({ alter: true });
-  const Eotype = await getModelEotype(sequelize).sync({ alter: true });
-  const Nardop = await getModelNardop(sequelize).sync({ alter: true });
-  const Narswitch = await getModelNarswitch(sequelize).sync({ alter: true });
-  const Roztash = await getModelRoztash(sequelize).sync({ alter: true });
-  const Worker = await getModelWorker(sequelize).sync({ alter: true });
-*/
-
+  dbModelsMap.set('Katelbez', await getModelKatelbez(sequelize).sync());
+  dbModelsMap.set('Brig', await getModelBrig(sequelize).sync());
+  dbModelsMap.set('Mechanism', await getModelMechanism(sequelize).sync());
+  dbModelsMap.set('Narground', await getModelNarground(sequelize).sync());
+  dbModelsMap.set('Position', await getModelPosition(sequelize).sync());
+  dbModelsMap.set('User', await getModelUser(sequelize).sync());
+  dbModelsMap.set('Eotype', await getModelEotype(sequelize).sync());
+  dbModelsMap.set('Nardop', await getModelNardop(sequelize).sync());
+  dbModelsMap.set('Narswitch', await getModelNarswitch(sequelize).sync());
+  dbModelsMap.set('Roztash', await getModelRoztash(sequelize).sync());
+  dbModelsMap.set('Worker', await getModelWorker(sequelize).sync());
   
-  const Katelbez = await getModelKatelbez(sequelize).sync();
-  const Brig = await getModelBrig(sequelize).sync();
-  const Mechanism = await getModelMechanism(sequelize).sync();
-  const Narground = await getModelNarground(sequelize).sync();
-  const Position = await getModelPosition(sequelize).sync();
-  const User = await getModelUser(sequelize).sync();
-  const Eotype = await getModelEotype(sequelize).sync();
-  const Nardop = await getModelNardop(sequelize).sync();
-  const Narswitch = await getModelNarswitch(sequelize).sync();
-  const Roztash = await getModelRoztash(sequelize).sync();
-  const Worker = await getModelWorker(sequelize).sync();
-
-// Create a new user
-const jane = await User.create({ name: "Jane", passwd: "Doe", worker_id: 1 });
-console.log("Jane's auto-generated ID:", jane.id);
-jane.name="";
-
-
-
-/*
-const Katelbez = await getModelKatelbez(sequelize);
-const Nardop = await getModelNardop(sequelize);
-
-  Nardop.hasMany(Katelbez);
-  Katelbez.belongsTo(Nardop);
-  sequelize.sync();
-*/
-/*
-  Nardop.associate = models => {
-    Nardop.hasMany(Katelbez, {
-      foreignKey: 'katelbez_id'
-    });
-  }
-
-  await Nardop.sync({ alter: true });
-  await Katelbez.sync({ alter: true });
-*/ 
-/*
-  const User = sequelize.define('user', { username: Sequelize.STRING }, {
-    underscored: true
-  });
-  const Task = sequelize.define('task', { title: Sequelize.STRING }, {
-    underscored: true
-  });*/
-  //Nardop.hasMany(Katelbez);
-  //Katelbez.belongsTo(Nardop);
-/*
-  console.log(Katelbez === sequelize.models.katelbez) // true
-  console.log(Brig === sequelize.models.brig);
-  console.log(Mechanism === sequelize.models.mechanism);
-  console.log(Narground === sequelize.models.narground);
-  console.log(Position === sequelize.models.position);
-  console.log(User === sequelize.models.user);
-  console.log(Eotype === sequelize.models.eotype);
-  console.log(Nardop === sequelize.models.nardop);
-  console.log(Narswitch === sequelize.models.narswitch);
-  console.log(Roztash === sequelize.models.roztash);
-  console.log(Worker === sequelize.models.worker);
-*/
+  // Create a new user
+  //const jane = await User.create({ name: "Jane", passwd: "Doe", worker_id: 1 });
+  //console.log("Jane's auto-generated ID:", jane.id);
+  //jane.name="";
 }
 
-
-module.exports.connection = async () => {
-  const sequelize = new Sequelize({
+const connSet = async () => {
+  sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: './data/db.sqlite'
   });
   
   try {
     await sequelize.authenticate();
-    console.log('Соединение с БД было успешно установлено');
+    console.log("Зв'язок з БД було встановлено");
     await initModels(sequelize);
-
-    await sequelize.close();
   } catch (e) {
-    console.log('Невозможно выполнить подключение к БД: ', e);
+    console.log('Неможливо підключитися до БД: ', e);
   }  
 }
+
+const connClose = async () => {
+  try {
+    await sequelize.close();
+  } catch (e) {
+    console.log('Помилка при закритті бази даних!!!', e);
+  }  
+}
+
+module.exports = { connSet, connClose };

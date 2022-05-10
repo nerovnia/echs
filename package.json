@@ -4,7 +4,9 @@
   "description": "Формування заявок на роботи у електроустановках",
   "main": "main.js",
   "scripts": {
+    "start_old": "electron .",
     "start": "electron --disable-gpu --disable-software-rasterizer .",
+    "rebuild": "electron-rebuild -f -w sqlite3",
     "test": "echo \"Error: no test specified\" && exit 1",
     "demo-init": "node ./test/db/filldb.js"
   },
