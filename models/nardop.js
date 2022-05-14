@@ -61,7 +61,7 @@ module.exports.getModelNardop = (sequelize) => {
         }
       },
       fider: {
-        type: DataTypes.STRING(70),
+        type: DataTypes.STRING(90),
         allowNull: false
       },
       wname: {

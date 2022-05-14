@@ -4,20 +4,6 @@
 
 const { contextBridge, ipcRenderer } = require('electron')
 
-
-ipcRenderer.on('dbrecs', (e, initData)=> {
-  console.log(initData);
-  //console.log(initData);
-});
-
-
-const gelb = []; //dbModelsMap.get('Gelb').findAll()
-const position = [];
-const prizv = [];
-const in_latters = [];
-const katvolt = [];
-const katelbez = [];
-
 const app = Vue.createApp({
   data() {
     return {
@@ -28,34 +14,31 @@ const app = Vue.createApp({
       zayavka_w: true,
       katelbez: [],
       katvolt: [],
-      ker: [],
-      dop: [],
-      brig: [],
-
-      user: [
-        'admin'
-      ],
+      gelb: [],
+      position: [],
       workers: []
     }
   },
+  computed: {
+    ker() {
+      return this.workers;
+    },
+    dop() {
+      return this.workers;
+    },
+    brig() {
+      return Array.from(this.workers, worker => {
+        worker.dataValues.full_name = `${this.position.find(pos => pos.dataValues.id == worker.dataValues.position_id).dataValues.name} ${worker.dataValues.lname} ${worker.dataValues.name}. ${worker.dataValues.oname}. гр. ${this.gelb.find(e => e.dataValues.id == worker.dataValues.gelb_id).dataValues.name}`;
+        return worker;
+      });
+    }
+  },
   created() {
-    this.position = position;
-    this.gelb = gelb;
-    //this.katelbez = katelbez;
     ipcRenderer.send('getRecords', 'Katelbez');
-    //console.log(this.katelbez);
-
-    //ipcRenderer.send('getRecords', 'User', this.user);
-    //ipcRenderer.send('getRecords', 'Katelbez', this.katelbez); 
-    
-    this.katvolt = katvolt;
-    //this.workers = fillWorker(20);
-    this.dop = this.workers.filter(w => w.allowance);
-
-    //ipcRenderer.on('dbrecs', (e, initData, dest)=> {
-    //ipcRenderer.on('dbrecs', (e, initData)=> {
-    //  console.log(initData);
-    //});
+    ipcRenderer.send('getRecords', 'Katvolt');
+    ipcRenderer.send('getRecords', 'Gelb');
+    ipcRenderer.send('getRecords', 'Position');
+    ipcRenderer.send('getRecords', 'Worker');
   },
   methods: {
     showKatelbez() {
@@ -64,3 +47,24 @@ const app = Vue.createApp({
   }
 }).mount('#app');
 
+ipcRenderer.on('dbrecs', (e, initData)=> {
+  if(initData != null) {
+    switch(initData.dbTblModelName) {
+      case 'Katelbez':
+        app.katelbez = initData.data;
+        break;
+      case 'Katvolt':
+        app.katvolt = initData.data;
+        break;
+      case 'Gelb':
+        app.gelb = initData.data;
+        break;
+      case 'Position':
+        app.position = initData.data;
+        break;
+      case 'Worker':
+        app.workers  =  initData.data;
+        break;
+    }
+  }
+});

@@ -11,7 +11,7 @@ module.exports.getModelMechanism = (sequelize) => {
         primaryKey: true
       },
       name: {
-        type: DataTypes.STRING(150),
+        type: DataTypes.STRING(15),
         allowNull: false
       },
     },

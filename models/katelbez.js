@@ -11,7 +11,7 @@ module.exports.getModelKatelbez = (sequelize) => {
         primaryKey: true
       },
       name: {
-        type: DataTypes.STRING(40),
+        type: DataTypes.STRING(90),
         allowNull: false
       },
     },

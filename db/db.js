@@ -10,6 +10,8 @@ const { getModelNardop } = require('../models/nardop.js');
 const { getModelNarswitch } = require('../models/narswitch.js');
 const { getModelRoztash } = require('../models/roztash.js');
 const { getModelWorker } = require('../models/worker.js');
+const { getModelKatvolt } = require('../models/katvolt.js');
+const { getModelGelb } = require('../models/gelb.js');
 
 const initModels = async (sequelize) => {
   dbModelsMap.set('Katelbez', await getModelKatelbez(sequelize).sync());
@@ -23,6 +25,8 @@ const initModels = async (sequelize) => {
   dbModelsMap.set('Narswitch', await getModelNarswitch(sequelize).sync());
   dbModelsMap.set('Roztash', await getModelRoztash(sequelize).sync());
   dbModelsMap.set('Worker', await getModelWorker(sequelize).sync());
+  dbModelsMap.set('Katvolt', await getModelKatvolt(sequelize).sync());
+  dbModelsMap.set('Gelb', await getModelGelb(sequelize).sync());
   
   // Create a new user
   //const jane = await User.create({ name: "Jane", passwd: "Doe", worker_id: 1 });

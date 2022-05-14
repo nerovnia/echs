@@ -76,22 +76,22 @@
               <label for="tWorkTo" class="col-sm-4 col-form-label">Категорія робіт:</label>
               <div class="col-sm-8">
                 <select>
-                  <option v-for="k in katelbez" value="">{{ k }}</option>
+                  <option v-for="k in katelbez" value="">{{ k.dataValues.name }}</option>
                 </select>
               </div>
             </div>
           </div>
           <select>
-            <option v-for="kat in katvolt" value="" >{{ kat }}</option>
+            <option v-for="kat in katvolt" value="" >{{ kat.dataValues.name }}</option>
           </select>
           <select>
-            <option v-for="worker in ker" value="">{{ worker.pib }}</option>
+            <option v-for="worker in ker" value="">{{ `${worker.dataValues.lname} ${worker.dataValues.name}. ${worker.dataValues.oname}.` }}</option>
           </select>
           <select>
-            <option v-for="worker in dop" value="">{{ worker.pib }}</option>
+            <option v-for="worker in dop" value="">{{ worker.dataValues.lname }}</option>
           </select>
           <select>
-            <option v-for="worker in workers" value="">{{ worker.pib }}</option>
+            <option v-for="worker in brig" value="">{{ worker.dataValues.full_name }}</option>
           </select>
         </form>
       </div>

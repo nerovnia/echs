@@ -48,7 +48,6 @@ const createWindow = () => {
 
 ipcMain.on('getRecords', (e, ...args) => {
   let res = {};
-  console.log('skuksadkajdakjdhakhdkahd');
   let dbTblModelName = args[0];
   try {
     sequelize.authenticate()
@@ -59,9 +58,10 @@ ipcMain.on('getRecords', (e, ...args) => {
             if (recs === null) {
               res.data = null;
             } else {
-              res.dbTbl = dbTblModelName;
+              res.dbTblModelName = dbTblModelName;
               res.data = recs;
             }
+            console.log(res);
             e.reply('dbrecs', res);
           });
         });

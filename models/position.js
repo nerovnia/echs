@@ -10,7 +10,11 @@ module.exports.getModelPosition = (sequelize) => {
         primaryKey: true
       },
       name: {
-        type: DataTypes.STRING(150),
+        type: DataTypes.STRING(30),
+        allowNull: false
+      },
+      namesk: {
+        type: DataTypes.STRING(15),
         allowNull: false
       },
     },
