@@ -11,6 +11,8 @@ const { getModelNarswitch } = require('../../models/narswitch.js');
 const { getModelRoztash } = require('../../models/roztash.js');
 const { getModelWorker } = require('../../models/worker.js');
 const { getModelKatvolt } = require('../../models/katvolt.js');
+const { getModelInterruption } = require('../../models/interruption.js');
+const { getModelInterrupttype } = require('../../models/interrupttype.js');
 const { getModelUser } = require('../../models/user.js');
 const { getModelRole } = require('../../models/role.js');
 
@@ -22,6 +24,7 @@ const { getDataMechanism } = require('../db/data/mechanism.js');
 const { getDataPosition } = require('../db/data/position.js');
 const { getDataRoztash } = require('../db/data/roztash.js');
 const { getDataWorker } = require('../db/data/worker.js');
+const { getDataInterrupttype } = require('../db/data/interrupttype.js');
 const { getDataUser } = require('../db/data/user.js');
 const { getDataRole } = require('../db/data/role.js');
 
@@ -38,6 +41,8 @@ const initModels = async (sequelize) => {
   const Narswitch = await getModelNarswitch(sequelize).sync();
   const Roztash = await getModelRoztash(sequelize).sync();
   const Worker = await getModelWorker(sequelize).sync();
+  const Interruption = await getModelInterruption(sequelize).sync();
+  const Interrupttype = await getModelInterrupttype(sequelize).sync();
   const User = await getModelUser(sequelize).sync();
   const Role = await getModelRole(sequelize).sync();
 
@@ -68,16 +73,14 @@ const initModels = async (sequelize) => {
     fillSimpleTable(getDataKatvolt, Katvolt);
     fillSimpleTable(getDataEotype, Eotype);
     fillSimpleTable(getDataRoztash, Roztash);
+    fillSimpleTable(getDataInterrupttype, Interrupttype);
     fillPositionTable(getDataPosition, Position);
-
     getDataWorker.forEach(async worker => {
       await Worker.create({ name: worker.name, lname: worker.lname, oname: worker.oname, position_id: worker.position, gelb_id: worker.gelb, pvnrless1000: worker.pvnrless1000, pvnrmore1000: worker.pvnrmore1000, mngrless1000: worker.mngrless1000, mngrmore1000: worker.mngrmore1000, allowless1000: worker.allowless1000, allowmore1000: worker.allowmore1000, supervisor: worker.supervisor, switch: worker.switch, member: worker.member, testing: worker.testing, onhate: worker.onhate, sling: worker.sling, load: worker.load })
     });
 
   }); 
 }
-
-
 
 const main = async () => {
   const sequelize = new Sequelize({

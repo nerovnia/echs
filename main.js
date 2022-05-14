@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-//const { contextBridge, ipcRenderer } = require('electron');
+const pug = require('pug');
 const db = require('./db/db');
 const m_menu = require('./js/menu.js');
 
@@ -13,7 +13,6 @@ if (!lock) {
     app.focus();
   })
 }
-
 
 app.disableHardwareAcceleration();
 
