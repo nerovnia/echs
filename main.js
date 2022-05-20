@@ -3,6 +3,7 @@ const path = require('path');
 const pug = require('pug');
 const db = require('./db/db');
 const m_menu = require('./js/menu.js');
+const htmltmpl = require('./htmltmpl.js');
 
 //let sequelize;
 const lock = app.requestSingleInstanceLock();
@@ -34,9 +35,24 @@ const createWindow = () => {
     maxHeight: 768,
     title: 'Реєстр заявок/нарядів',
     show: false,
-    backgroundColor: '#2980b9'
+    backgroundColor: '#2980b9',
+    /*
+    webContents: `
+    <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <title>Реєстр заявок/нарядів</title>
+  </head>
+  
+  <body>
+    <h1>eigdlkfgldfjgldfjgldfjgldfjgldfjg</h1>
+  </body>
+  
+  </html>`*/
   });
   win.loadFile('index.html');
+  console.log(webContents.getAllWebContents());
 
   win.on('ready-to-show', () => {
     win.show();
