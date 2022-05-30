@@ -53,6 +53,10 @@ module.exports.getModelUser = (sequelize) => {
           allowNull: false
         }
       },
+      rules: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },      
     },
     {
       timestamps: false,

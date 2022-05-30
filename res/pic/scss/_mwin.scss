@@ -1,0 +1,80 @@
+body {
+  background-image: url(../pic/bg.png);
+  min-width: $min-width;
+  min-height: $min-height;
+}
+header {
+  margin: 30px 30px;
+  text-align: right;
+  height: 40px;
+}
+
+footer {
+  height: 40px;
+}
+
+#logo-block {
+  width: 600px;
+  height: 410px;
+}
+
+.title {
+  background-image: url(../pic/bg_rec.svg);
+  background-position: center;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+}
+
+.title__img {
+  text-align: center;
+  margin: 40px 0 0 0;
+}
+
+.title__ref {
+  padding: 20px 0;
+  text-align: center;
+  color: $reference-color;
+}
+
+.main_control_bar {
+  text-align: center;
+}
+
+.inp_button {
+  margin: 10px 10px;
+  padding: 15px 35px;
+  background-color: $btn-bg-color;
+  color: $btn-txt-color;
+  border: $btn-border-color solid 2px;
+}
+
+.inp_button:hover {
+  background-color: $btn-bg-hover-color;
+  color: $btn-txt-hover-color;
+  border: $btn-border-hover-color solid 2px;
+}
+
+#title__author {
+  font-size: 10px;
+  color: $title-author-color;
+}
+
+#title__for {
+  font-size: 12px;
+}
+
+#title__company {
+  font-size: 14px;
+}
+
+#title_ver {
+  margin: 20px 0;
+}
+
+#title__version {
+  font-size: 11px;
+}
+
+#title_block {
+  padding: 10px 0;
+}

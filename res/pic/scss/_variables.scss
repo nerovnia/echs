@@ -1,0 +1,29 @@
+$reference-color: #FF6A3A;
+$btn-bg-color: rgba(144, 55, 26, .77);;
+$btn-txt-color: #FFE6DC;
+$btn-border-color: #FFCCAA;
+$title-author-color: #FFCCAA;
+$btn-txt-hover-color: #90371A;
+$btn-bg-hover-color: rgba(255, 230, 220, .77);
+$btn-border-hover-color: #90371A;
+
+$min-width: 1000px;
+$min-height: 700px;
+$frm-indent: 20px;
+$frm-width:  calc(#{$min-width} - #{$frm-indent} * 2);
+$frm-height: calc(#{$min-height} - #{$frm-indent} * 2);
+
+.abs_center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.abs_bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
