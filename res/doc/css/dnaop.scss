@@ -1,0 +1,135 @@
+*{ padding: 0; margin:0; border: 0; }
+*,*:before, *:after {-moz-box-sizing:border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+:focus,:active{outline: none;}
+a:focus, a:active{outline: none;}
+
+nav, footer, header, aside{display: block;}
+
+html,body{
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  //font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+input,button,textarea{font-family: inherit;}
+
+input::ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding: 0;border: 0;}
+a, a:visited{text-decoration: none;}
+a.hover{text-decoration: none}
+ul li {list-style: none;}
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:400;}
+
+
+@font-face {
+  font-family: OpenSansReg;
+  src: url("../fonts/open_sans/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: OpenSansBold;
+  src: url("../fonts/open_sans/OpenSans-Bold.ttf");
+}
+
+body {
+  font-family: OpenSansReg;
+  line-height: 1.5;
+  min-width: 400px;
+  max-width: 1000px;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+.h1,.h2,.h3,.h4,.h5,.h6{
+  font-family: OpenSansBold;
+  text-align: center;
+}
+
+p {
+  text-align: justify;
+}
+
+ul, ol {
+  padding-left: 2rem;
+}
+
+nav{
+  ul li {
+    list-style-type: none;
+  }
+}
+
+ul li {
+  list-style-type: disc;
+}
+
+li {
+  text-align: justify;
+}
+
+table {
+  border-spacing: 0px;
+}
+
+tr {
+  th {
+    font-family: OpenSansBold;
+    background-color: #dfdfdf;
+  }
+  td {
+    vertical-align: top;
+    text-align: justify;
+    padding: 5px 15px;
+  }
+}
+
+tr:nth-child(even) {
+  background-color: #dfdfdf;
+}
+
+.h1 {
+  font-size: 1.125rem;
+  margin: 1rem 0;
+}
+
+.container {
+}
+
+.strong {
+  font-family: OpenSansBold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.left {
+  display: flex;
+  float: left;
+  width: 50%;
+}
+
+.right {
+  display: inline-block;
+  width: 49%;
+  text-align: right;
+  .reestr {
+    display: inline-block;
+    max-width: 15rem;
+    text-align: left;
+  }
+}
+
+.pidpis {
+  margin: 3rem 0;
+}
