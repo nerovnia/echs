@@ -23,7 +23,6 @@ nav, footer, header, aside {
 html, body {
   height: 100%;
   width: 100%;
-  font-size: 100%;
   line-height: 1;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
@@ -113,12 +112,14 @@ li {
 }
 
 table {
+  font-size: 0.8rem;
   border-spacing: 0px;
 }
 
 tr th {
   font-family: OpenSansBold;
-  background-color: #dfdfdf;
+  color: #dfdfdf;
+  background-color: #000000;
 }
 
 tr td {
@@ -129,6 +130,15 @@ tr td {
 
 tr:nth-child(even) {
   background-color: #dfdfdf;
+}
+
+.tab-num {
+  text-align: right;
+}
+
+.tab-name {
+  text-align: center;
+  font-family: OpenSansBold;
 }
 
 .h1 {
